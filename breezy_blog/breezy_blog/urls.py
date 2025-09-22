@@ -15,8 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from Breezi import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.post_list, name='home'),  # 👈 homepage shows posts
+    path('', include('Breezi.urls')),        # include app urls
 ]
+
