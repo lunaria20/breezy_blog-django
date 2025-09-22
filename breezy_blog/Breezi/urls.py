@@ -1,10 +1,12 @@
+# Breezi/urls.py
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
     # Home & static pages
-    path('', views.post_list, name='home'),
+    path('', views.post_list, name='home'),         # homepage
+    path('posts/', views.post_list, name='post_list'),  # all posts page
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
     path('test/', views.test_page, name='test_page'),
@@ -18,5 +20,5 @@ urlpatterns = [
     # Auth
     path('register/', views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name="Breezi/login.html"), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='register'), name='logout'),  # 👈 fixed
+    path('logout/', auth_views.LogoutView.as_view(next_page='register'), name='logout'),
 ]
