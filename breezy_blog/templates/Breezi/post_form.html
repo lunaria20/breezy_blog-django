@@ -1,0 +1,10 @@
+{% extends "Breezi/base.html" %}
+{% block title %}{{ action }} Post{% endblock %}
+{% block content %}
+<h1>{{ action }} Post</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">{{ action }}</button>
+</form>
+{% endblock %}
