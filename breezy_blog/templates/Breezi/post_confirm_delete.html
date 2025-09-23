@@ -1,11 +1,20 @@
-{% extends "Breezi/base.html" %}
-{% block title %}Delete Post{% endblock %}
+a{% extends "Breezi/base.html" %}
+{% block title %}Delete Post - Breezi Blog{% endblock %}
+
 {% block content %}
-<h1>Delete Post</h1>
-<p>Are you sure you want to delete "{{ post.title }}"?</p>
-<form method="post">
-  {% csrf_token %}
-  <button type="submit">Yes, delete</button>
-  <a href="{% url 'post_detail' post.pk %}">Cancel</a>
-</form>
+<div class="form-container delete-container">
+  <h2 class="form-title text-danger">⚠️ Delete Post</h2>
+  <p class="delete-warning">
+    Are you sure you want to delete <strong>"{{ post.title }}"</strong>?<br>
+    This action cannot be undone.
+  </p>
+
+  <form method="post" class="delete-form">
+    {% csrf_token %}
+    <div class="delete-actions">
+      <button type="submit" class="btn-danger">Yes, Delete</button>
+      <a href="{% url 'post_detail' post.pk %}" class="btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>
 {% endblock %}
