@@ -1,32 +1,31 @@
 {% extends "Breezi/base.html" %}
 
-{% block title %}{{ action }} Post{% endblock %}
+{% block title %}{{ action }} Post - Breezi Blog{% endblock %}
 
 {% block content %}
-<div class="container mt-5" style="max-width: 700px;">
-  <h2 class="mb-4 text-center">{{ action }} Post</h2>
+<div class="form-container">
+  <h2 class="form-title">{{ action }} Post</h2>
 
-  <form method="post" novalidate>
+  <form method="post" novalidate class="styled-form">
     {% csrf_token %}
-    
     {% for field in form %}
-      <div class="mb-3">
+      <div class="form-group">
         {{ field.label_tag }}
         {{ field }}
         {% if field.help_text %}
-          <div class="form-text text-muted">{{ field.help_text }}</div>
+          <small class="form-help">{{ field.help_text }}</small>
         {% endif %}
         {% for error in field.errors %}
-          <div class="text-danger">{{ error }}</div>
+          <div class="form-error">{{ error }}</div>
         {% endfor %}
       </div>
     {% endfor %}
 
-    <button type="submit" class="btn btn-success w-100">{{ action }}</button>
+    <button type="submit" class="btn-primary w-100">{{ action }}</button>
   </form>
 
-  <div class="mt-3 text-center">
-    <a href="{% url 'post_list' %}" class="btn btn-outline-secondary btn-sm">← Back to Posts</a>
+  <div class="form-footer">
+    <a href="{% url 'post_list' %}" class="btn-secondary">← Back to Posts</a>
   </div>
 </div>
 {% endblock %}
