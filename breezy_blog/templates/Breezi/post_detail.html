@@ -1,16 +1,20 @@
 {% extends "Breezi/base.html" %}
 {% block title %}{{ post.title }}{% endblock %}
+
 {% block content %}
-<article class="post">
+<article class="post-detail">
   <h1>{{ post.title }}</h1>
-  <p class="meta">by {{ post.author.username }} — {{ post.created_at }}</p>
-  <div class="content">{{ post.content|linebreaks }}</div>
+  <p class="meta">by <strong>{{ post.author.username }}</strong> — {{ post.created_at|date:"M d, Y" }}</p>
+
+  <div class="post-body">
+    {{ post.content|linebreaks }}
+  </div>
 
   {% if user.is_authenticated and user == post.author %}
-    <p class="actions">
-      <a href="{% url 'post_edit' post.pk %}">Edit</a> |
-      <a href="{% url 'post_delete' post.pk %}">Delete</a>
-    </p>
+    <div class="post-actions">
+      <a href="{% url 'post_edit' post.pk %}" class="btn-secondary">✏️ Edit</a>
+      <a href="{% url 'post_delete' post.pk %}" class="btn-danger">🗑️ Delete</a>
+    </div>
   {% endif %}
 </article>
 {% endblock %}

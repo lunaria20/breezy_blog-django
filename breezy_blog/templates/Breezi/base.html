@@ -14,38 +14,37 @@
 </head>
 <body>
     <!-- Navigation bar -->
-    <nav>
-        <ul>
-            <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'contact' %}">Contact</a></li>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo"><a href="{% url 'home' %}">Breezi 🌿</a></h1>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
 
-            {% if user.is_authenticated %}
-                <!-- Logout form (POST request for security) -->
-                <li>
-                    <form method="post" action="{% url 'logout' %}" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" style="background:none; border:none; padding:0; cursor:pointer; color:blue; text-decoration:underline;">
-                            Logout
-                        </button>
-                    </form>
-                </li>
-            {% else %}
-                <li><a href="{% url 'login' %}">Login</a></li>
-            {% endif %}
-        </ul>
+                {% if user.is_authenticated %}
+                    <li>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="logout-btn">Logout</button>
+                        </form>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
     </nav>
 
     <!-- Main content -->
-    <main>
+    <main class="content">
         {% block content %}
-        <!-- Child templates will insert content here -->
         {% endblock %}
     </main>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Breezi Blog. All rights reserved.</p>
+        <p>&copy; 2025 Breezi Blog 🌱. All rights reserved.</p>
     </footer>
 </body>
 </html>
